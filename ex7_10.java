@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.*; // 예외 처리를 위해 삽입
 
 abstract class Shape {
 	public abstract void draw(); // 추상 메소드
@@ -23,16 +22,17 @@ class Circle extends Shape {
 	}
 }
 
-public class ex_10 {
+public class ex7_10 {
 	public static void main(String[] args) {
 		// 문자열 값만 다루는 제네릭 벡터 생성
-		Vector<String> v = new Vector<String>(3); // 벡터 크기 3으로 초기화
+		Vector<Shape> v = new Vector<Shape>(3);
 		System.out.println("그래픽 에디터 beauty를 실행합니다. ");
 		boolean T = true;
 		Scanner sc = new Scanner(System.in);
 
 		while (T) {
 			System.out.println("삽입(1), 삭제(2), 모두 보기(3), 종료(4)>> ");
+			
 			int userInput = sc.nextInt();
 			switch (userInput) {
 			case 1: // 삽입부 구현
@@ -40,13 +40,13 @@ public class ex_10 {
 				int selectShape = sc.nextInt();
 				switch (selectShape) {
 				case 1:
-					v.add(0, "Line");
+					v.add(new Line());
 					break;
 				case 2:
-					v.add(1, "Rect");
+					v.add(new Rect());
 					break;
 				case 3:
-					v.add(2, "Circle");
+					v.add(new Circle());
 					break;
 				default:
 					System.out.println("잘못된 입력입니다.");
@@ -68,7 +68,7 @@ public class ex_10 {
 
 			case 3: // 모두 보기
 				for (int i = 0; i < v.size(); i++) {
-					String p = v.get(i); // 벡터에서 i번째 String 값 얻어내기
+					Shape p = v.get(i); // 벡터에서 i번째 String 값 얻어내기
 					System.out.println(p); // 해당하는 i번째 String 값 출력
 				}
 				break;
